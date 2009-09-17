@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
 	s.name = %q{zip_codes}
-	s.version = "0.5.0"
+	s.version = "0.5.1"
 	s.author = "Matt Lightner"
 	s.default_executable = %q{zip_codes}
 	s.description = %q{A library for looking up zip codes and their associated info.}
@@ -13,5 +13,5 @@ Gem::Specification.new do |s|
 	s.require_paths = ["lib"]
 	s.summary = %q{A library for looking up zip codes and their associated info.}
 
-  s.add_dependency(%q<sqlite3>, [">= 0.0.0"])
+  s.add_dependency(%q<sqlite3-ruby>, [">= 0.0.0"])
 end
