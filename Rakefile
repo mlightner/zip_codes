@@ -61,7 +61,8 @@ namespace :zip_codes do
   desc 'Creates index on zip codes table'
   task :index do
 	  db = SQLite3::Database.open( "#{DIR}/zip_codes.db" )
-	  db.execute("create unique index zip_index on zip_codes (zip);")
+	  db.execute("create unique index zip_index on zip_codes (zip);") rescue nil
+	  db.execute("create index zip_state_index on zip_coddes (state);") rescue nil
   end
 
   desc 'Cleans data dir'
