@@ -17,7 +17,8 @@ end
 desc "Update gem files list"
 task :gemfiles do
   file_name = "zip_codes.gemspec"
-  files = `find ./ | grep -v \.git`.each_line.collect { |f| f.gsub(/^\.\//, '').strip }.reject { |e| e =~ /^\s*$/ }
+  files = `find ./ | grep -v \.git`.each_line.collect { |f| f.strip }.reject { |e| e =~ /^[^\W]*$$/  }
+  files.shift
   file = File.new(file_name)
   lines = file.readlines
   file.close
