@@ -24,17 +24,16 @@ task :gemfiles do
 
   newf = []
   lines.each do |line|
-    if line =~ /^\s+ s.files\s*\=/
-      newf.push "  s.files = [\"#{files.join('","')}\"],\n"
+    if line =~ /^\s+s\.files\s*\=/
+      newf.push "  s.files = [\"#{files.join('","')}\"]\n"
     else
-      newf.push(line)
+      newf.push(line.rstrip + "\n")
     end
   end
-raise newf.inspect
 
   # Don't write the file if there are no changes
   file = File.new(file_name,'w')
-  lines.each do |line|
+  newf.each do |line|
     file.write(line)
   end
   file.close
