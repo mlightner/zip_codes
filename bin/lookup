@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+require File.dirname(__FILE__) + '/../zip_codes.rb'
+
+zip = ARGV[0].strip
+
+raise "Syntax: $0 <zip_code>" unless zip
+
+if zip !~ /^([\w\-]+)$/
+  raise "Zip is invalid format"
+end
+
+z = ZipCode.new(zip)
+
+if z && z.valid?
+  puts "Results for zip code: #{zip}:"
+  ZipCode.columns.each do |c|
+    next if c == :id
+    next if c == :zip
+    puts "  - #{c.to_s}: #{z.record[c.to_sym]}"
+  end
+else
+  puts "No match for zip code: #{zip}:"
+end

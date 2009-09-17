@@ -14,6 +14,31 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = true
 end
 
+desc "Update gem files list"
+task :gemfiles do
+  file_name = "zip_codes.gemspec"
+  files = `find ./ | grep -v \.git`.each_line.collect { |f| f.gsub(/^\.\//, '').strip }.reject { |e| e =~ /^\s*$/ }
+  file = File.new(file_name)
+  lines = file.readlines
+  file.close
+
+  newf = []
+  lines.each do |line|
+    if line =~ /^\s+ s.files\s*\=/
+      newf.push "  s.files = [\"#{files.join('","')}\"],\n"
+    else
+      newf.push(line)
+    end
+  end
+raise newf.inspect
+
+  # Don't write the file if there are no changes
+  file = File.new(file_name,'w')
+  lines.each do |line|
+    file.write(line)
+  end
+  file.close
+end
 
 namespace :zip_codes do
 
