@@ -1,0 +1,8 @@
+Library for looking up zip code info.
+
+See example script for usage.
+
+Also includes bin, so you can run $ zipfind 12345
+once you have installed the gem.
+
+install with "gem install mlightner-zip_codes" and include with "include 'zip_codes'"
