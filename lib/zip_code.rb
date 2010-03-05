@@ -29,7 +29,7 @@ class ZipCode
     @record = {}
     columns.each_with_index do |f,i|
       @record[f.to_sym] = row[i]
-      self.instance_variable_set(:"@#{f.to_s}", row[i])
+      self.instance_variable_set("@#{f.to_s}".to_sym, row[i])
     end
     
   end
